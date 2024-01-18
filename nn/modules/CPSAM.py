@@ -7,25 +7,7 @@ from ultralytics.nn.modules import Conv
 class PYSAM(nn.Module):
     def __init__(self, c1, c2):
 
-        super(PYSAM, self).__init__()
-        self.pool1 = nn.Sequential(nn.AdaptiveAvgPool3d((1, None, None)))
-        self.pool2 = nn.Sequential(nn.AdaptiveAvgPool3d((c1//16, None, None)))
-        self.pool3 = nn.Sequential(nn.AdaptiveAvgPool3d((c1//8, None, None)))
-        self.pool4 = nn.Sequential(nn.AdaptiveAvgPool3d((c1//4, None, None)))
-        self.pool5 = nn.Sequential(nn.AdaptiveAvgPool3d((c1//2, None, None)))
-        c_ = 1 + c1//16 + c1//8 + c1//4 + c1//2
-        self.cv = nn.Conv2d(c_, 1, kernel_size=1, stride=1, padding=0)
-        self.bn = nn.BatchNorm2d(1)
-
-    def forward(self, x):
-        short = x
-        x = x.unsqueeze(1)
-        weight1, weight2, weight3, weight4, weight5 = self.pool1(x), self.pool2(x), self.pool3(x), self.pool4(x), self.pool5(x)
-        x_cat = torch.cat([weight1, weight2, weight3, weight4, weight5], dim=2)
-        x_cat = x_cat.squeeze(1)
-        x_cv = self.bn(self.cv(x_cat))
-
-        return torch.sigmoid(x_cv) * short
+# This section will be made public upon acceptance of the paper.
 
 
 class CAM(nn.Module):
