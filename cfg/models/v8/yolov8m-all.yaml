@@ -12,62 +12,9 @@ scales:
   x: [1.00, 1.25, 512]   # YOLOv8x summary: 365 layers, 68229648 parameters, 68229632 gradients, 258.5 GFLOPs
 
 # YOLOv8.0n backbone
-backbone:
-  # [from, repeats, module, args]
-  - [-1, 1, Conv, [64, 3, 2]]  # 0-P1/2
-  - [-1, 1, Conv, [128, 3, 1]]  # 1-P2/4
-  - [-1, 1, space_to_depth, [1]]
- # - [-1, 1, SPDConv, [128]]
-  - [-1, 3, C2f, [128, True]]
-  - [-1, 1, Conv, [256, 3, 1]]  # 3-P3/8  4
-  - [-1, 1, space_to_depth, [1]]
- # - [-1, 1, SPDConv, [256]]
-  - [-1, 6, C2f, [256, True]]
-  - [-1, 1, Conv, [512, 3, 1]]  # 5-P4/16   7
-  - [-1, 1, space_to_depth, [1]]   # 8
- # - [-1, 1, SPDConv, [512]]
-  - [-1, 6, C2f, [512, True]]
-  - [-1, 1, Conv, [1024, 3, 1]]  # 7-P5/32  10
-  - [-1, 1, space_to_depth, [1]]
- # - [-1, 1, SPDConv, [1024]]
-  - [-1, 3, C2f, [1024, True]]
-  - [-1, 1, SPPF, [1024, 5]]  # 9   13
 
-# YOLOv8.0s head
-head:
-  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]
-  - [[-1, 9], 1, Concat, [1]]  # cat backbone P4
-  - [-1, 3, C2f, [512]]  # 12  16
 
-  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]
-  - [[-1, 6], 1, Concat, [1]]  # cat backbone P3
-  - [-1, 3, C2f, [256]]  # 15 (P3/8-small)  19
-
-  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]
-  - [[-1, 3], 1, Concat, [1]]  # cat backbone P3
-  - [-1, 3, C2f, [128]]  # 18 (P2/4-xsmall)  22
-  - [-1, 1, PYSAM, [128]]   #23
-
-  - [-2, 1, Conv, [256, 3, 1]]
-  - [-1, 1, space_to_depth, [1]]
-  #- [-1, 1, SPDConv, [256]]
-  - [[-1, 19], 1, Concat, [1]]  # cat head P4
-  - [-1, 3, C2f, [256]]  # 21 (P3/8-small)  26
-  - [-1, 1, PYSAM, [256]]  # 28
-
-  - [-2, 1, Conv, [512, 3, 1]]
-  - [-1, 1, space_to_depth, [1]]
- # - [-1, 1, SPDConv, [512]]
-  - [[-1, 16], 1, Concat, [1]]  # cat head P5
-  - [-1, 3, C2f, [512]]  # 24 (P4/16-medium)  30
-  - [-1, 1, PYSAM, [512]]  # 33
-
-  - [-2, 1, Conv, [512, 3, 1]]
-  - [-1, 1, space_to_depth, [1]]
- # - [-1, 1, SPDConv, [512]]
-  - [[-1, 13], 1, Concat, [1]]  # cat head P5
-  - [-1, 3, C2f, [1024]]  # 27 (P5/32-large)  34
-  - [-1, 1, PYSAM, [1024]]  #38
+# This section will be made public upon acceptance of the paper.
 
 
   - [[23, 28, 33, 38], 1, Detect, [nc]]  # Detect(P2, P3, P4, P5)
