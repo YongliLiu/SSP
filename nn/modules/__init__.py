@@ -14,8 +14,7 @@ os.system(f'onnxsim {f} {f} && open {f}')
 """
 
 from .block import (C1, C2, C3, C3TR, DFL, SPP, SPPF, Bottleneck, BottleneckCSP, C2f, C3Ghost, C3x, GhostBottleneck,
-                    HGBlock, HGStem, Proto, RepC3, ScConv, GSConv, VoVGSCSP, RFAConv, RFCAConv, RFCBAMConv, SE,
-                    ODConv2d_3rd, SimAM, EMA, space_to_depth, AMBottleneck, AMC2f, CoordAttention, MDC2f, DCBlock,
+                    HGBlock, HGStem, Proto, RepC3, SE, SimAM, space_to_depth, AMBottleneck, AMC2f, CoordAttention,
                     SPDConv)
 from .conv import (CBAM, ChannelAttention, Concat, Conv, Conv2, ConvTranspose, DWConv, DWConvTranspose2d, Focus,
                    GhostConv, LightConv, RepConv, SpatialAttention)
@@ -29,6 +28,5 @@ __all__ = ('Conv', 'Conv2', 'LightConv', 'RepConv', 'DWConv', 'DWConvTranspose2d
            'TransformerBlock', 'MLPBlock', 'LayerNorm2d', 'DFL', 'HGBlock', 'HGStem', 'SPP', 'SPPF', 'C1', 'C2', 'C3',
            'C2f', 'C3x', 'C3TR', 'C3Ghost', 'GhostBottleneck', 'Bottleneck', 'BottleneckCSP', 'Proto', 'Detect',
            'Segment', 'Pose', 'Classify', 'TransformerEncoderLayer', 'RepC3', 'RTDETRDecoder', 'AIFI', 'SimAM',
-           'DeformableTransformerDecoder', 'DeformableTransformerDecoderLayer', 'MSDeformAttn', 'MLP',
-           'GSConv', 'VoVGSCSP', 'RFAConv', 'RFCAConv', 'RFCBAMConv', 'ODConv2d_3rd', 'EMA', 'space_to_depth',
-           'AMBottleneck', 'AMC2f', 'CPSAM', 'CoordAttention', 'MDC2f', 'DCBlock', 'MSCAM', 'PYSAM', 'SE', 'SPDConv')
+           'DeformableTransformerDecoder', 'DeformableTransformerDecoderLayer', 'MSDeformAttn', 'MLP', 'space_to_depth',
+           'CPSAM', 'CoordAttention', 'PYSAM', 'SE', 'SPDConv')
